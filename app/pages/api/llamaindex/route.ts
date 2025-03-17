@@ -1,5 +1,5 @@
 import { SimpleDirectoryReader } from "@llamaindex/readers/directory";
-import { VectorStoreIndex, Settings, BaseOutputParser } from "llamaindex";
+import { VectorStoreIndex, Settings } from "llamaindex";
 import { OpenAI } from "@llamaindex/openai";
 import { NextRequest, NextResponse } from "next/server";
 import { NextApiResponse } from "next";
@@ -46,7 +46,6 @@ export async function POST(req: NextRequest, res: NextApiResponse<ResponseData>)
     const response = await queryEngine.query({
       query,
     });
-    console.log('#### POST', { response });
     
     return NextResponse.json({ message: response.message.content.toString() });
   } catch (error) {
